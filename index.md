@@ -4,9 +4,12 @@
 1.static   
 https://www.cnblogs.com/dolphin0520/p/3799052.html  
 2.final  
+https://www.cnblogs.com/dolphin0520/p/3736238.html  
 
 # java数据结构与算法  
-1.树基本概念及二叉树（BinaryTree）的设计与实现  
+1.java中常用的数据结构List，Set，Map等的区别与联系  
+https://blog.csdn.net/qq_34337272/article/details/80294307  
+2.树基本概念及二叉树（BinaryTree）的设计与实现  
 https://blog.csdn.net/javazejian/article/details/53727333  
 ### Header 3
 
