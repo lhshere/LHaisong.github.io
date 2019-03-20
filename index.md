@@ -24,7 +24,8 @@ https://blog.csdn.net/javazejian/article/details/53727333
 1.4 ReenTrantLock独有的能力：  
     ReentrantLock可以指定是非公平锁(默认)or公平锁，而synchronized只能是非公平锁。  
     ReenTrantLock提供了一个Condition（条件）类，用来实现分组唤醒需要唤醒的线程们，而不是像synchronized要么随机唤醒一个                             线程要么唤醒全部线程。  
-    ReenTrantLock提供了一种能够中断等待锁的线程的机制，通过lock.lockInterruptibly()来实现这个机制。  
+    ReenTrantLock提供了一种能够中断等待锁的线程的机制，通过lock.lockInterruptibly()来实现这个机制。 
+    file:///C:/Users/lenovo/Desktop/ReentrantLock%E7%9A%84%E8%8E%B7%E5%8F%96%E4%B8%8E%E9%87%8A%E6%94%BE%20.webp
 
 [Link](url) and ![Image](src)
 ```
