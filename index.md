@@ -43,25 +43,50 @@ https://blog.csdn.net/javazejian/article/details/53727333
 5.偏向锁： 当线程第一次获取锁对象的时候，虚拟机会把对象头的标志位设为01，进入偏向模式，同时使用CAS操作将持有偏向锁的线程的ID记录在Mark Word中，如果           CAS操作成功，则以后持有偏向锁的线程进入这个锁相关的同步块时不用再进行任何操作，当有另外一个线程尝试获取这个锁时偏向模式结束，根据锁对象目           前是否处于锁定状态，撤销偏向后恢复到轻量级锁状态或者无锁状态。
             
 
-[Link](url) and ![Image](src)
-```
+# MySQL数据库
+1.mysql中两种主要的存储引擎MyISAM与InnoDB的区别  
+1.1 InnoDB存储引擎支持事务、行锁设计、支持外键，但是默认的读取不会产生锁。InnoDB通过使用多版本并发控制(MVCC)来获得高并发性，并实现了SQL默认的4种隔     离级别，默认状态下是Repeattable，使用next-key locking来避免幻读问题，除此之外还提供了插入缓冲、二次写、自适应哈希索引、预读等高可用功能，表中     数据的存储采用了聚集的方式。  
+1.2 MyISAM存储引擎不支持事务、表锁设计，支持全文索引，它的缓冲池只缓存索引文件而不缓存数据文件  
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
+2. 数据库的4种隔离级别，每种级别可能会存在的问题
+2.1 未提交读(read uncommitted) 可能会造成脏读问题，即读取到还未提交的事务操作的数据  
+2.2 提交读(read committed) 修复了脏读问题，但可能会造成不可重复读问题，即读取到已经提交的数据  
+2.3 重复读(repeatable read) 是MySQL默认的隔离级别，修复了脏读、不可重复读的问题，但可能会造成幻读问题，使用next-key locking解决了这一问题
+2.4 可序列化读(serializable) 最严格的级别避免了所有的问题，但是资源开销很大  
 
-### Jekyll Themes
+3. MySQL中的锁
+3.1 数据库中使用锁是为了对资源进行并发访问，并提高数据一致性和完整性。
+3.2 lock与latch： lock的对象是事务，如表、页、行，lock对象一般在事务commit或者rollback后进行释放  
+                      lock                                                latch  
+      对象             事务                                                线程  
+      保护             数据库的内容                                         内存数据结构
+      持续时间         整个事务过程                                          临界资源  
+      模式             表锁、行锁、页锁                                      读写锁、互斥量  
+      死锁             通过资源等待图和超时机制进行检测                        无死锁检测机制  
+      存在于           lock manager的hash表中                                每个数据结构对象  
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/LHaisong/LHaisong.github.io/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
+4. 锁的类别
+   mysql中最主要有两种锁： 
+   共享锁：S Lock允许事务读一行数据  
+   排他锁：X Lock允许事务删除一行数据  
+   InnoDB存储引擎为了支持在不同的粒度上进行加锁，而引入了一种额外的加锁方式，意向锁：  
+   意向共享锁：IS Lock 获得表中某几行的共享锁  
+   意向排它锁：IX Lock 获得表中某几行的排他锁  
+   select ... from ... lock in share mode  加共享锁  
+   select ... from ... for update 加排他锁  
 
-### Support or Contact
+5.一致性非锁定读  
+   指的是innoDB引擎通过多版本并发控制来读取当前执行时间数据库中行数据，如果正在执行update或者delete操作，这时读取操作不会等待锁的释放，而是去读取一个快照数据(指的是改行之前版本的数据，听过undo实现)，这样大大提高了并发性。  
+   
+6.锁的三种算法：
+  6.1 Record Lock：单个行记录上的锁  
+  6.2 Gap Lock：间隙锁，锁定一个范围，但不包含记录本身  
+  6.3 Next-key Lock：前两者的集合，并且锁定本身，查询的索引含有唯一性属性时会进行降级为record lock仅锁住索引本身  
 
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
-
-
-
-
-
-
-
+7.死锁的判定原理  
+7.1 概念：两个或两个以上的事务在执行的过程中，因争夺资源而造成的一种互相等待的现象
+7.2 死锁的检测：wait-for graph
+7.3 死锁的解决:超时机制，当等待的时间超过某个设置的阈值时，其中一个事务进行回滚。
 
 
 
