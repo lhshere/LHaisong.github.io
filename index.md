@@ -12,7 +12,7 @@ https://blog.csdn.net/qq_34337272/article/details/80294307
 2.树基本概念及二叉树（BinaryTree）的设计与实现  
 https://blog.csdn.net/javazejian/article/details/53727333  
 
-#java并发
+# java并发
 
 1.java中synchronized关键字和ReentrantLock的区别：
 相同点：两者都是可重入锁，在实现可重入性时，两者都是同一个线程没进入一次，锁的计数器都自增1，所以要等到锁的计数器下降为0时才能释放锁。
