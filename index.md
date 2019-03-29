@@ -145,7 +145,7 @@ https://blog.csdn.net/javazejian/article/details/53727333
   
 14.sql语句的执行过程  
    https://blog.csdn.net/sinat_32176267/article/details/83280206
-  
+    
 15.mysql索引优化  
   15.1 索引类型：  
        主键索引：特殊的唯一标识，不允许为空值，mysql会自动为主键列添加唯一索引，所以主键列不必再添加唯一索引  
@@ -157,12 +157,14 @@ https://blog.csdn.net/javazejian/article/details/53727333
        alter table table_name add index index_name(column_name1,column_name2......);
        全文索引：全文索引（也称全文检索）是目前搜索引擎使用的一种关键技术。它能够利用分词技术等多种算法智能分析出文本文字中关键字词的频率及重要性，然                 后按照一定的算法规则智能地筛选出我们想要的搜索结果。  
        ALTER TABLE table_name ADD FULLTEXT (column)  
+         
   15.2 建立索引的原则：  
        1)最左前缀匹配原则：对于多列的组合索引，从列的最左边开始匹配，中间不能跳过，所以在创建组合索引时，在where子句中使用最频繁的放在左边，如果跳过                           最左边的列使用右边的列进行查询将导致全表扫描，索引无效。  
        2)选择区分度高的列作为索引，比如学号而不是性别  
        3)in和=可以乱序，SQL的语句优化器会优化为索引可以识别的顺序  
        4)索引列不能参加计算，如果列参加计算的话每次索引时都会进行计算一次，成本很高。  
        5)能进行索引的扩展就不进行索引的创建，index(a)----->index(a,b)  
+         
   15.3 以下情况索引会失效：  
        1)like的参数以通配符开头，如：like '%海松'   
        2)where条件不符合最左前缀匹配原则  
@@ -170,13 +172,15 @@ https://blog.csdn.net/javazejian/article/details/53727333
        4)索引列参与计算  
        5)对字段进行null值判断  
        6)使用or来连接条件  
+         
   15.4 索引优化总结：https://cloud.tencent.com/developer/article/1004912  
        1)避免使用select(*)，在解析的过程中会将'*' 依次转换成所有的列名，这个工作是通过查询数据字典完成的，这意味着将耗费更多的时间。  
        2)order by语句优化：order by语句中的任何非索引列或有计算表达式的都会降低查询的速度①重写order by语句使用索引②为索引项添加索引③绝对避免在子句                           中使用表达式  
        3)group by优化：在group by之前将不需要的字段过滤掉，先where再group by  
        4)使用exists替代in  
-       5)join语句优化：如果应用程序有很多JOIN 查询，你应该确认两个表中Join的字段是被建过索引的。这样，MySQL内部会启动为你优化Join的SQL语句的机制  
-       6)
+       5)join语句优化：如果应用程序有很多JOIN 查询，你应该确认两个表中Join的字段是被建过索引的。这样，MySQL内部会启动为你优化Join的SQL语句的机制   
+  
+16.使用explain优化SQL语句：https://blog.csdn.net/zbw18297786698/article/details/54349046
        
        
        
