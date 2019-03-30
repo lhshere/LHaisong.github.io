@@ -42,7 +42,22 @@ https://blog.csdn.net/javazejian/article/details/53727333
 4.4.轻量级锁：在代码进入同步块的时候，如果此同步对象未被锁定，虚拟机会在当前线程的栈帧中建立一个名为锁记录(lock record)的空间，用于存储锁对象目前。              Mark Word拷贝(displaced mark word)，然后虚拟机将会使用CAS操作尝试将对象的Mark Word更新为指向lock record,如果这个操作成功则拥有了该              对象的锁，Mark Word的锁标志为将会变成00，如果操作失败，虚拟机会检查对象的Mark Word是否指向了当前线程的栈帧，是则重入，否则说明当前锁              对象已经被其他线程抢占了，如果有多个线程竞争同一个锁则轻量级锁将不在有效，转变为重量级锁，后面线程阻塞。  
 4.5.偏向锁： 当线程第一次获取锁对象的时候，虚拟机会把对象头的标志位设为01，进入偏向模式，同时使用CAS操作将持有偏向锁的线程的ID记录在Mark Word中，如             果CAS操作成功，则以后持有偏向锁的线程进入这个锁相关的同步块时不用再进行任何操作，当有另外一个线程尝试获取这个锁时偏向模式结束，根据锁对             象目前是否处于锁定状态，撤销偏向后恢复到轻量级锁状态或者无锁状态。  
 5.java Object中的wait()、notify()方法和ReentrantLock中Conditon中的await()、signal()方法的区别：  
-        https://blog.csdn.net/u011955252/article/details/78303998
+        https://blog.csdn.net/u011955252/article/details/78303998  
+6.java中与线程有关的常见方法：  
+  6.1 wait()方法，存在于Object中，由object调用，让线程让出当前的monitor对象进入等待，但前提是已经获得了对象的monitor对象，会释放锁  
+  6.2 notify()方法，存在于Object中，用于唤醒等待池中的线程，但是不能确定哪个会被唤醒，调用前当前对象的monitor对象必须要已经被获取  
+  6.3 sleep()方法，存在thread中，让线程休眠，但不会释放锁  
+  6.4 yield()方法，存在yield中，表示线程愿意放弃当前的执行而把机会让给与它具有相同优先级的线程，它仅能使一个线程从运行(running)状态转到可运行           (ready)状态，而不是等待或阻塞状态  
+  6.5 join()方法，存在thread中，表示让线程进入等待状态，如：t1.join()/t1.join(10)表示等待t1执行完毕/等待t1 10毫秒  
+7.java中的守护线程：https://blog.csdn.net/shimiso/article/details/8964414  
+8.java线程中的辅助：CountDownLatch、CyclicBarrier、Semaphore  (详细使用见mmpfiles)https://segmentfault.com/a/1190000015785789  
+  8.1 CountDownLatch是一个同步的辅助类，允许一个或多个线程一直等待，直到其它线程完成它们的操作。  
+  8.2 CyclicBarrier允许一组线程互相等待，直到到达某个公共屏障点。叫做cyclic是因为当所有等待线程都被释放以后，CyclicBarrier可以被重用(对比于             CountDownLatch是不能重用的)  
+  8.3 Semaphore(信号量)实际上就是可以控制同时访问的线程个数，它维护了一组"许可证"。  
+     当调用acquire()方法时，会消费一个许可证。如果没有许可证了，会阻塞起来  
+     当调用release()方法时，会添加一个许可证。  
+     这些"许可证"的个数其实就是一个count变量罢了~  
+   
             
 
 # MySQL数据库
