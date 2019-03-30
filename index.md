@@ -64,10 +64,11 @@ https://blog.csdn.net/javazejian/article/details/53727333
        
 9.LockSupport类：https://blog.csdn.net/hengyunabc/article/details/28126139  
   
-10.java线程池：https://juejin.im/entry/58fada5d570c350058d3aaad  https://www.jianshu.com/p/87bff5cc8d8c
+10.java线程池：https://juejin.im/entry/58fada5d570c350058d3aaad  https://www.jianshu.com/p/87bff5cc8d8c  
    10.1 为什么使用线程池？  
    10.1.1 线程池是一种稀缺的资源，在并发量高的时候如果无限制的被创建不仅会消耗系统资源而且会降低系统的安全性，合理的利用线程池对线程进行统一的分配、           调优和监控很有必要，使用线程池主要有以下几个好处：  
         1)降低资源消耗    2)提高响应速度      3)提高线程的可管理性  
+	  
    10.2 线程池创建的两种方式的比较：  
 		  Executors各个方法的弊端：  
 		  1) newFixedThreadPoolfPnewSingleThreadExecutor:  
@@ -77,8 +78,9 @@ https://blog.csdn.net/javazejian/article/details/53727333
 		  ExecutorService pool = Executors.newFixedThreadPool(3);  
 		  推荐使用这种方式创建线程池，利于使用者理解各参数的作用，规避资源耗尽的风险  
 		ThreadPoolExecutor pool=new ThreadPoolExecutor(3,5,0L,TimeUnit.SECONDS,new ArrayBlockingQueue<Runnable>(3));  
-   10.3 创建线程池几个重要的参数：
-    10.3.1 corePoolSize：核心线程数，当提交一个任务时，线程池会创建一个线程执行任务，直到线程数等于corePoolSize
+	  
+   10.3 创建线程池几个重要的参数：  
+    10.3.1 corePoolSize：核心线程数，当提交一个任务时，线程池会创建一个线程执行任务，直到线程数等于corePoolSize  
     10.3.2 maximumPoolSize：线程中允许的最大线程数，如果提交的任务数大于核心线程数，则会把任务放进阻塞队列中去，前提是任务数小于maximumPoolSize,            如果阻塞队列满了则将创建新的线程执行任务。  
     10.3.3 keepAliveTime：线程的空闲存活时间，即当前程没有任务执行时继续存活的时间；默认情况下该参数在线程数大于corePoolSize的情况下才会有效  
     10.3.4 unit：keepAliveTime的单位  
