@@ -64,7 +64,7 @@ https://blog.csdn.net/javazejian/article/details/53727333
        
 9.LockSupport类：https://blog.csdn.net/hengyunabc/article/details/28126139  
   
-10.java线程池：
+10.java线程池：https://juejin.im/entry/58fada5d570c350058d3aaad  
    
             
 
