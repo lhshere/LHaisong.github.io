@@ -64,7 +64,55 @@ https://blog.csdn.net/javazejian/article/details/53727333
        
 9.LockSupport类：https://blog.csdn.net/hengyunabc/article/details/28126139  
   
-10.java线程池：https://juejin.im/entry/58fada5d570c350058d3aaad  
+10.java线程池：https://juejin.im/entry/58fada5d570c350058d3aaad  https://www.jianshu.com/p/87bff5cc8d8c
+   10.1 为什么使用线程池？  
+   10.1.1 线程池是一种稀缺的资源，在并发量高的时候如果无限制的被创建不仅会消耗系统资源而且会降低系统的安全性，合理的利用线程池对线程进行统一的分配、           调优和监控很有必要，使用线程池主要有以下几个好处：  
+        1)降低资源消耗    2)提高响应速度      3)提高线程的可管理性  
+   10.2 线程池创建的两种方式的比较：  
+		  Executors各个方法的弊端：  
+		  1) newFixedThreadPoolfPnewSingleThreadExecutor:  
+		  主要问题是堆积的请求处理队列可能会耗费非常大的内存，甚至00M。  
+		  2) newCachedThreadPoolfPnewScheduledThreadPool:  
+		  主要问題是线程数最大数是Integer.MAX_VALUE,可能会创建数置非常多的线程，甚至OOM。  
+		  ExecutorService pool = Executors.newFixedThreadPool(3);  
+		  推荐使用这种方式创建线程池，利于使用者理解各参数的作用，规避资源耗尽的风险  
+		ThreadPoolExecutor pool=new ThreadPoolExecutor(3,5,0L,TimeUnit.SECONDS,new ArrayBlockingQueue<Runnable>(3));  
+   10.3 创建线程池几个重要的参数：
+    10.3.1 corePoolSize：核心线程数，当提交一个任务时，线程池会创建一个线程执行任务，直到线程数等于corePoolSize
+    10.3.2 maximumPoolSize：线程中允许的最大线程数，如果提交的任务数大于核心线程数，则会把任务放进阻塞队列中去，前提是任务数小于maximumPoolSize,            如果阻塞队列满了则将创建新的线程执行任务。  
+    10.3.3 keepAliveTime：线程的空闲存活时间，即当前程没有任务执行时继续存活的时间；默认情况下该参数在线程数大于corePoolSize的情况下才会有效  
+    10.3.4 unit：keepAliveTime的单位  
+    10.3.5 workQueue：用来保存等待被执行的任务的阻塞队列，且任务必须实现Runable接口，在JDK中提供了如下阻塞队列：  
+      1) ArrayBlockingQueue：基于数组结构的有界阻塞队列，按FIFO排序任务；  
+      2) LinkedBlockingQuene：基于链表结构的阻塞队列，按FIFO排序任务，吞吐量通常要高于ArrayBlockingQuene；  
+      3) SynchronousQuene：一个不存储元素的阻塞队列，每个插入操作必须等到另一个线程调用移除操作，否则插入操作一直处于阻塞状态，吞吐量通常要高于                                LinkedBlockingQuene；  
+      4) priorityBlockingQuene：具有优先级的无界阻塞队列；  
+    10.3.6 threadFactory: 创建线程的工厂，可以通过自定义线程工厂为线程指定名字  
+    10.3.7 handler：饱和策略，如果阻塞队列满了且没有可执行任务的线程，而任务又必须要提交，则必须要采用一种饱和策略来处理该任务：  
+        1)AbortPolicy：直接抛出异常，默认策略；  
+        2)CallerRunsPolicy：用调用者所在的线程来执行任务；  
+        3)DiscardOldestPolicy：丢弃阻塞队列中靠最前的任务，并执行当前任务；  
+        4)DiscardPolicy：直接丢弃任务；  
+        
+        
+
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
    
             
 
