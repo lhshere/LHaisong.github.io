@@ -262,6 +262,12 @@ https://blog.csdn.net/javazejian/article/details/53727333
 # java IO与NIO  
 1.NIO介绍：https://blog.csdn.net/suifeng3051/article/details/48160753  
           https://blog.yoodb.com/yoodb/article/detail/1498  
+  
+# java消息队列  
+ 1.https://blog.csdn.net/qq_34337272/article/details/80029918  
+ 2.ActiveMQ：
+ 3.RabbitMQ：https://www.jianshu.com/p/79ca08116d57  
+ 4.RocketMQ：https://www.jianshu.com/p/824066d70da8  
        
        
        
