@@ -259,8 +259,9 @@ https://blog.csdn.net/javazejian/article/details/53727333
   
 16.使用explain优化SQL语句：https://blog.csdn.net/zbw18297786698/article/details/54349046  
   
-#java IO与NIO  
-
+# java IO与NIO  
+1.NIO介绍：https://blog.csdn.net/suifeng3051/article/details/48160753  
+          https://blog.yoodb.com/yoodb/article/detail/1498  
        
        
        
