@@ -269,7 +269,14 @@ https://blog.csdn.net/javazejian/article/details/53727333
  3.RabbitMQ：https://www.jianshu.com/p/79ca08116d57  
  4.RocketMQ：https://www.jianshu.com/p/824066d70da8  
        
-       
+# 面向对象https://blog.csdn.net/jiyiqinlovexx/article/details/46593053
+1.面向的特征和原则
+1.1基本特征：多态、继承、封装  
+1.2基本原则：单一职责原则、开放封闭原则、替换原则、依赖原则、接口分离原则  
+2.java中的值传递和引用传递https://juejin.im/post/5bce68226fb9a05ce46a0476#heading-10  
+2.1值传递：在方法被调用时，实参通过形参把它的内容副本传入方法内部，此时形参接收到的内容是实参值的一个拷贝，因此在方法内对形参的任何操作，都仅仅是对这个副本的操作，不影响原始值的内容。  
+2.2引用传递：”引用”也就是指向真实内容的地址值，在方法调用时，实参的地址通过方法调用被传递给相应的形参，在方法体内，形参和实参指向通愉快内存地址，对形参的操作会影响的真实内容。  
+
        
        
        
