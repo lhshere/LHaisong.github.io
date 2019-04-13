@@ -227,11 +227,11 @@ https://blog.csdn.net/javazejian/article/details/53727333
   15.1 索引类型：  
        主键索引：特殊的唯一标识，不允许为空值，mysql会自动为主键列添加唯一索引，所以主键列不必再添加唯一索引  
        唯一索引：索引列必须唯一，但是允许有null  
-       ALTER TABLE table_name ADD UNIQUE (column)
+       ALTER TABLE table_name ADD UNIQUE (column)  
        普通索引：最基本的索引，没有限制，可以在表创建的时候创建也可以通过修改表结构进行创建  
-       alter table table_name add index index_name(column_name);
+       alter table table_name add index index_name(column_name);  
        组合索引：一个索引包含多个列  
-       alter table table_name add index index_name(column_name1,column_name2......);
+       alter table table_name add index index_name(column_name1,column_name2......);  
        全文索引：全文索引（也称全文检索）是目前搜索引擎使用的一种关键技术。它能够利用分词技术等多种算法智能分析出文本文字中关键字词的频率及重要性，然                 后按照一定的算法规则智能地筛选出我们想要的搜索结果。  
        ALTER TABLE table_name ADD FULLTEXT (column)  
          
