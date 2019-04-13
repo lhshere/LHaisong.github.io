@@ -252,7 +252,9 @@ https://blog.csdn.net/javazejian/article/details/53727333
          
   15.4 索引优化总结：https://cloud.tencent.com/developer/article/1004912  
        1)避免使用select(*)，在解析的过程中会将'*' 依次转换成所有的列名，这个工作是通过查询数据字典完成的，这意味着将耗费更多的时间。  
-       2)order by语句优化：order by语句中的任何非索引列或有计算表达式的都会降低查询的速度①重写order by语句使用索引②为索引项添加索引③绝对避免在子句                           中使用表达式  
+       2)order by语句优化：order by语句中的任何非索引列或有计算表达式的都会降低查询的速度  
+       ①重写order by语句使用索引  
+       ②为索引项添加索引③绝对避免在子句中使用表达式   
        3)group by优化：在group by之前将不需要的字段过滤掉，先where再group by  
        4)使用exists替代in  
        5)join语句优化：如果应用程序有很多JOIN 查询，你应该确认两个表中Join的字段是被建过索引的。这样，MySQL内部会启动为你优化Join的SQL语句的机制   
