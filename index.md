@@ -260,6 +260,10 @@ https://blog.csdn.net/javazejian/article/details/53727333
        5)join语句优化：如果应用程序有很多JOIN 查询，你应该确认两个表中Join的字段是被建过索引的。这样，MySQL内部会启动为你优化Join的SQL语句的机制   
   
 16.使用explain优化SQL语句：https://blog.csdn.net/zbw18297786698/article/details/54349046  
+
+# 开源框架  
+1.Spring IOC和DI  
+
   
 # java IO与NIO  
 1.NIO介绍：https://blog.csdn.net/suifeng3051/article/details/48160753  
